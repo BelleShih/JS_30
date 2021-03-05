@@ -64,11 +64,9 @@ window.addEventListener('keydown', function(event){
   if (!audio) return
   audio.currentTime="0"
   audio.play()
-})
-
-// 點擊後有顏色
-window.addEventListener('keydown', function(event){
-    let key = document.querySelector(`div[data-key='${event.keyCode}']`)
+  
+  // 點擊後有顏色
+  let key = document.querySelector(`div[data-key='${event.keyCode}']`)
     key.classList.add('playing')
     // 監聽點擊後效果的transition，結束後移除
     let keys = document.querySelectorAll('.key')
@@ -78,10 +76,8 @@ window.addEventListener('keydown', function(event){
     }
     keys.forEach((item) => {
       item.addEventListener('transitionend', removeTransition)
-    })
   })
+})
 </script>
-
-
 </body>
 </html>
