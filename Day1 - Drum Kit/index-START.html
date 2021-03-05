@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
+  <link rel="shortcut icon" href="#">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 
   <div class="keys">
     <div data-key="65" class="key">
@@ -58,7 +58,13 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-
+// 監聽按鍵，抓取播放正確的音效
+window.addEventListener('keydown', function(event){
+  let audio = document.querySelector(`audio[data-key='${event.keyCode}']`)
+  if (!audio) return
+  audio.currentTime="0"
+  audio.play()
+})
 </script>
 
 
