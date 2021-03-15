@@ -80,6 +80,10 @@ const getTime = () => {
   hour.style.transform = `rotate(${ h * 30 + 90 }deg)`
   min.style.transform = `rotate(${ m * 6 + 90 }deg)`
   sec.style.transform = `rotate(${ s * 6 + 90 }deg)`
+
+  hour.style.transformOrigin = 'right center'
+  min.style.transformOrigin = 'right center'
+  sec.style.transformOrigin = 'right center'
 }
 
 setInterval(getTime, 1000)
