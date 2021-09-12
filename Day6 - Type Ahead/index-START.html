@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+let locationData = [];
+
+axios.get(endpoint).then(res => {
+  locationData = res.data;
+  console.log(locationData);
+}).catch(err => {
+  console.log('錯誤');
+})
+
+
+let displayMatches = (e) => {
+  let keyWord = event.target.value;
+  let matchArr = locationData.filter(item => {
+    let regex = new RegExp(keyWord, 'gi');
+    return item.city.match(regex) || item.state.match(regex)
+  })
+  console.log(matchArr);
+};
+// TODO
+document.querySelector('input').addEventListener('input', displayMatches)
+
+</script>
+</body>
+</html>
