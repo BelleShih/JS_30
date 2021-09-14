@@ -27,6 +27,7 @@ axios.get(endpoint).then(res => {
   console.log('錯誤');
 })
 
+let suggestions = document.querySelector('.suggestions');
 
 let displayMatches = (e) => {
   let keyWord = event.target.value;
@@ -35,6 +36,18 @@ let displayMatches = (e) => {
     return item.city.match(regex) || item.state.match(regex)
   })
   console.log(matchArr);
+  let html = matchArr.map(item => {
+    let regex = new RegExp(keyWord, 'gi');
+    let cityName = item.city.replace(regex, `<span class="h1">${keyWord}</span>`);
+    let stateName = item.state.replace(regex, `<span class="h1">${keyWord}</span>`);
+    return `
+    <li>
+        <span class="name">${cityName},${stateName}</span>
+        <span class="population">${(item.population)}</span>
+    </li>
+    `;
+  }).join('');
+  suggestions.innerHTML = html;
 };
 // TODO
 document.querySelector('input').addEventListener('input', displayMatches)
